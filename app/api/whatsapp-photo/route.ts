@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     if (!phone) {
       return NextResponse.json(
-        { success: false, error: "Número de telefone é obrigatório" },
+        { success: false, error: "Le numéro de téléphone est requis" },
         {
           status: 400,
           headers: { "Access-Control-Allow-Origin": "*" },
