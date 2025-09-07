@@ -3,9 +3,9 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
+  title: "WhatsApp Secrets - Découvrez Tous les Secrets",
+  description: "Révélez les messages supprimés, photos cachées et conversations secrètes WhatsApp avec notre technologie IA avancée.",
+  generator: "WhatsApp Secrets",
 }
 
 export default function RootLayout({
