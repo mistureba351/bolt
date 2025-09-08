@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
-  // JSON-default de retorno em caso de falha da API externa
+  // JSON padrão de retorno em caso de falha da API externa
   const fallbackPayload = {
     success: true,
     result:
@@ -22,14 +22,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Remove caracteres não numéricos
-    const cleanPhone = phone.replace(/[^0-9]/g, "")
-
-    // Adiciona código do país se não tiver (assumindo Brasil +55)
-    let fullNumber = cleanPhone
-    if (!cleanPhone.startsWith("55") && cleanPhone.length === 11) {
-      fullNumber = "55" + cleanPhone
-    }
+    // Apenas remove caracteres não numéricos. O número já vem com o código do país do frontend.
+    const fullNumber = phone.replace(/[^0-9]/g, "")
 
     const response = await fetch(
       `https://primary-production-aac6.up.railway.app/webhook/request_photo?tel=${fullNumber}`,
@@ -37,14 +31,14 @@ export async function POST(request: NextRequest) {
         method: "GET",
         headers: {
           Accept: "application/json",
-          Origin: "https://whatspy.chat",
+          Origin: "https://whatspy.chat", // Importante: A API externa pode validar esta origem
         },
-        // timeout de 10 s (Edge Runtime aceita AbortController)
+        // timeout de 10 segundos
         signal: AbortSignal.timeout?.(10_000),
       },
     )
 
-    // Se a API externa falhar, devolvemos payload padrão 200
+    // Se a API externa falhar, retornamos o payload padrão com status 200
     if (!response.ok) {
       console.error("API externa retornou status:", response.status)
       return NextResponse.json(fallbackPayload, {
@@ -55,6 +49,7 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json()
 
+    // Verifica se a foto é privada ou inexistente
     const isPhotoPrivate = !data?.link || data.link.includes("no-user-image-icon")
 
     return NextResponse.json(
@@ -70,7 +65,7 @@ export async function POST(request: NextRequest) {
     )
   } catch (err) {
     console.error("Erro no webhook WhatsApp:", err)
-    // Nunca deixamos propagar status 500; devolvemos fallback
+    // Em caso de qualquer erro, retornamos o payload padrão para não quebrar o frontend
     return NextResponse.json(fallbackPayload, {
       status: 200,
       headers: { "Access-Control-Allow-Origin": "*" },
@@ -78,6 +73,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// A função OPTIONS está correta para lidar com requisições pre-flight de CORS
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
