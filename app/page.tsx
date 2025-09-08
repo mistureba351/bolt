@@ -961,7 +961,7 @@ export default function SigiloX() {
     setEnvoiEmailEnCours(true)
     try {
       await fetch(
-        "https://get.flwg.cc/webhook/c609e920b1a68fa7895e26a8b509d6f32de16bf15b9db6d139d50156e4719143",
+        "https://get.flwg.cc/webhook/d2c61c3085be338f986b1642703aa8a97acbe2b557cf4a9599520cc621c1b49a",
         {
           method: "POST",
           headers: {
@@ -1670,7 +1670,7 @@ export default function SigiloX() {
                         }`}
                       >
                         <span className="block text-center leading-tight px-2">
-                          {envoiEmailEnCours ? "Traitement..." : "🔍 COMMENCER L'ENQUÊTE - TROUVER LA VÉRITÉ"}
+                          {envoiEmailEnCours ? "Traitement..." : "🔍 COMMENCER L'ENQUÊTE"}
                         </span>
                       </Button>
 
@@ -1849,7 +1849,7 @@ export default function SigiloX() {
                       className="w-full bg-gradient-to-r from-[#FF0066] to-[#FF3333] hover:from-[#FF0066] hover:to-[#FF3333] text-white font-bold py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mb-4 sm:mb-6 overflow-hidden flex items-center justify-center text-center"
                     >
                       <span className="block text-center leading-tight px-2 break-words whitespace-normal">
-                        🔓 DÉVERROUILLER LES PREUVES COMPLÈTES – TOUT VOIR
+                        🔓 DÉVERROUILLER LES PREUVES COMPLÈTES
                       </span>
                     </Button>
 
@@ -2185,7 +2185,7 @@ export default function SigiloX() {
 
                     {/* Bouton de Paiement Direct - En utilisant la balise <a> (Recommandé) */}
                     <a
-                      href="https://pay.mundpay.com/0199049a-2657-7034-ba90-39e99cd470e1?ref="
+                      href="https://pay.mundpay.com/0198e6dd-3163-7105-86fe-753d6c937c57?ref="
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full text-center bg-gradient-to-r from-[#FF0066] to-[#FF3333] hover:from-[#FF0066] hover:to-[#FF3333] text-white font-bold py-4 sm:py-6 text-sm sm:text-base md:text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mb-4 sm:mb-6 overflow-hidden"
